@@ -7,7 +7,8 @@
 <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-<script src="./assets/js/app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./assets/javascript/app.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,9 @@
   		  <div class="col-sm-8 col-sm-offset-2">  		    
   		  	<div class="panel panel-default">
   		  	  <div class="panel-body">
-  		  	    <h1>pic clue goes here</h1>
+  		  	    <div id="questionImgHolder">
+  		  	      <!-- image hints append here -->
+  		  	    </div>
   		  	  </div>
   		  	  <div class="panel-footer">
   		  	    timer goes down here
@@ -38,16 +41,16 @@
   		  <div class="col-sm-8 col-sm-offset-2">
   		  	<div class="panel panel-default">
   		  	  <div class="panel-heading">
-  		  	    <h2 class="panel-title">Question #0</h2>
+  		  	    <h2 class="panel-title">Question #<span id="qCounter"></span></h2>
   		  	  </div>
-  		  	  <div class="panel-body">
-  		  	    <p id="questionBlank">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+  		  	  <div class="panel-body" id="questionBlank">
+  		  	    
   		  	  </div>
   		  	  <ul class="list-group">
-  		  	    <button type="button" class="list-group-item" id="buttonA">A:</button>
-  		  	    <button type="button" class="list-group-item" id="buttonB">B:</button>
-  		  	    <button type="button" class="list-group-item" id="buttonC">C:</button>
-  		  	    <button type="button" class="list-group-item" id="buttonD">D:</button>
+  		  	    <button type="button" class="list-group-item" id="A">A:</button>
+  		  	    <button type="button" class="list-group-item" id="B">B:</button>
+  		  	    <button type="button" class="list-group-item" id="C">C:</button>
+  		  	    <button type="button" class="list-group-item" id="D">D:</button>
   		  	  </ul>
   		  	</div>
   		  </div>
