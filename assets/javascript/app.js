@@ -61,12 +61,17 @@ var questionCounter = 0;
 var displayImage = "";
 var selectedQuestion = "";
 var displayQuestion = "";
+var timeRemaining = 10;
 
-$("#qCounter").text(questionCounter); 
+
+$("#qCounter").text(questionCounter);
+$("#qTimer").text(timeRemaining);
 
 function chooseQuestion() {
 	var x = Math.floor(Math.random() * availableQuestions.length);	
 	selectedQuestion = availableQuestions[x];
+
+	$("#questionImgHolder, #questionBlank, #A, #B, #C, #D").empty();
 
 	displayImage = $("<img>").attr( {"src": selectedQuestion.questionImgURL, "alt": selectedQuestion.questionImgAlt} );
 	$("#questionImgHolder").append(displayImage);
@@ -83,10 +88,27 @@ function chooseQuestion() {
 	usedQuestions.push(spliceOut);
 	console.log (usedQuestions);
 	console.log (availableQuestions);
+};
 
+function questionTimer() {
+	intervalId = setInterval(decrement, 1000);
+};
+
+function decrement() {
+	timeRemaining--;
+	$("#qTimer").text(timeRemaining);
+	if (timeRemaining === 0) {
+		clearInterval(intervalId);
+		chooseQuestion();
+		timeRemaining = 11;
+		questionCounter++;
+		questionTimer();
+
+	}
 };
 
 chooseQuestion();
+questionTimer();
 
 $("#A, #B, #C, #D").on("click", function(){	
 	questionCounter ++;
@@ -94,8 +116,7 @@ $("#A, #B, #C, #D").on("click", function(){
 	if ( $(this).attr("id") === selectedQuestion.correctAnswer ){
 		alert("correct!");
 		playerScore ++;
-	}
-	$("#questionImgHolder, #questionBlank, #A, #B, #C, #D").empty();
+	}	
 	chooseQuestion();
 	console.log(selectedQuestion);
 });
@@ -104,6 +125,43 @@ $("#A, #B, #C, #D").on("click", function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+setInterval(function() {
+    var timer = $("#timer").text();
+    timer = timer.split(':');
+    var minutes = timer[0];
+    var seconds = timer[1];
+    seconds -= 1;
+    if (minutes < 0) return;
+    if (seconds < 0 && minutes != 0) {
+        minutes -= 1;
+        seconds = 59;
+    }
+    else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+    if ((minutes < 10) && ((minutes+'').length < 2)) minutes = '0' + minutes;
+    $("#timer").text(minutes + ':' + seconds);
+}, 1000);
+
+if ($("#timer").text() === "0:00"){
+	alert("Times up!");
+}
+*/
 
 }); // end of ready function
 
