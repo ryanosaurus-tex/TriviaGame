@@ -55,41 +55,49 @@ var availableQuestions = [
 	},
 ];
 
-var selectedQuestion = " ";
-
-(function chooseQuestion(){
-	var x = Math.floor(Math.random() * availableQuestions.length);	
-	selectedQuestion = availableQuestions[x];	
-
-}());
-
-console.log(selectedQuestion);
+var usedQuestions = [];
 var playerScore = 0;
-
 var questionCounter = 0;
-$("#qCounter").text(questionCounter);
+var displayImage = "";
+var selectedQuestion = "";
+var displayQuestion = "";
 
-var displayImage = $("<img>").attr( {"src": selectedQuestion.questionImgURL, "alt": selectedQuestion.questionImgAlt} );
-$("#questionImgHolder").append(displayImage);
+$("#qCounter").text(questionCounter); 
 
-var displayQuestion = $("<p>").text(selectedQuestion.questionText);
-$("#questionBlank").append(displayQuestion);
- 
-$("#A").html("<p class='answers'>" + selectedQuestion.answerA + "</p>")
-$("#B").html("<p class='answers'>" + selectedQuestion.answerB + "</p>")
-$("#C").html("<p class='answers'>" + selectedQuestion.answerC + "</p>")
-$("#D").html("<p class='answers'>" + selectedQuestion.answerD + "</p>")
+function chooseQuestion() {
+	var x = Math.floor(Math.random() * availableQuestions.length);	
+	selectedQuestion = availableQuestions[x];
 
-$("#A, #B, #C, #D").on("click", function(){
-	alert("the click worked!");
+	displayImage = $("<img>").attr( {"src": selectedQuestion.questionImgURL, "alt": selectedQuestion.questionImgAlt} );
+	$("#questionImgHolder").append(displayImage);
+
+	displayQuestion = $("<p>").text(selectedQuestion.questionText);
+	$("#questionBlank").append(displayQuestion);
+
+	$("#A").html("<p class='answers'>A: " + selectedQuestion.answerA + "</p>");
+	$("#B").html("<p class='answers'>B: " + selectedQuestion.answerB + "</p>");
+	$("#C").html("<p class='answers'>C: " + selectedQuestion.answerC + "</p>");
+	$("#D").html("<p class='answers'>D: " + selectedQuestion.answerD + "</p>");
+
+	var spliceOut = availableQuestions.splice(x, 1,);
+	usedQuestions.push(spliceOut);
+	console.log (usedQuestions);
+	console.log (availableQuestions);
+
+};
+
+chooseQuestion();
+
+$("#A, #B, #C, #D").on("click", function(){	
 	questionCounter ++;
 	$("#qCounter").text(questionCounter);
 	if ( $(this).attr("id") === selectedQuestion.correctAnswer ){
 		alert("correct!");
 		playerScore ++;
-	} else {
-		// add else
 	}
+	$("#questionImgHolder, #questionBlank, #A, #B, #C, #D").empty();
+	chooseQuestion();
+	console.log(selectedQuestion);
 });
 
 
