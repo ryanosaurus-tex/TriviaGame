@@ -10,58 +10,114 @@ var availableQuestions = [
 		answerB: "Million years old.",
 		answerC: "Billion years old.",
 		answerD: "Trillion years old.",
-		correctAnswer: "C",
-		modalImgURL: "./assets/images/modals/00.png",
-		modalText: "questionArray[0].modalText correct answer reaveal/explaination text"
+		correctAnswer: "C"		
 	},
 	{	
 		id: 1,	
-		questionImgURL: "./assets/images/questions/00.png",
-		questionImgAlt: "this is alt text",
-		questionText: "1text for the question",
-		answerA: "availableQuestions[1].answerA text",
-		answerB: "availableQuestions[1].answerB text",
-		answerC: "availableQuestions[1].answerC text",
-		answerD: "availableQuestions[1].answerD text",
-		correctAnswer: "B",
-		modalImgURL: "./assets/images/modals/01.png",
-		modalText: "questionArray[1].modalText correct answer reaveal/explaination text"
+		questionImgURL: "./assets/images/questions/01.png",
+		questionImgAlt: "Trees",
+		questionText: "What is the oldest individual living organism on Earth today?",
+		answerA: "Big-cone Pinyon",
+		answerB: "Bristlecone Pine",
+		answerC: "Ponderosa Pine",
+		answerD: "Sequoia Redwood",
+		correctAnswer: "B"		
 	},
 	{	
 		id: 2,	
-		questionImgURL: "./assets/images/questions/00.png",
-		questionImgAlt: "this is alt text",
-		questionText: "2text for the question",
-		answerA: "availableQuestions[2].answerA text",
-		answerB: "availableQuestions[2].answerB text",
-		answerC: "availableQuestions[2].answerC text",
-		answerD: "availableQuestions[2].answerD text",
-		correctAnswer: "C",
-		modalImgURL: "./assets/images/modals/02.png",
-		modalText: "questionArray[1].modalText correct answer reaveal/explaination text"
+		questionImgURL: "./assets/images/questions/02.png",
+		questionImgAlt: "Water on Earth",
+		questionText: "Salt water makes up most of the water on planet Earth. By comparison, a much smaller amount exists as freshwater in the forms of ice, groundwater, and surface water (lakes, rivers, and streams). What percentage of ALL the water on Earth is both freshwater AND accessible for human use?",
+		answerA: "11.8%",
+		answerB: "4.2%",
+		answerC: "0.3%",
+		answerD: "25.1%",
+		correctAnswer: "C"
 	},
 	{	
 		id: 3,	
-		questionImgURL: "./assets/images/questions/00.png",
-		questionImgAlt: "this is alt text",
-		questionText: "3text for the question",
-		answerA: "availableQuestions[3].answerA text",
-		answerB: "availableQuestions[3].answerB text",
-		answerC: "availableQuestions[3].answerC text",
-		answerD: "availableQuestions[3].answerD text",
-		correctAnswer: "D",
-		modalImgURL: "./assets/images/modals/03.png",
-		modalText: "questionArray[1].modalText correct answer reaveal/explaination text"
+		questionImgURL: "./assets/images/questions/03.png",
+		questionImgAlt: "Representation of the tree of life on Earth",
+		questionText: "Above is a representation of all the life on Earth and the evolutionary relationship between species. Each 'branch' in the tree represents a divergence from a shared common ancestor. The Metazoan group includes all animal life that has ever existed on our planet. How long has life existed on Earth?",
+		answerA: "3.8 million years",
+		answerB: "3,800 years",
+		answerC: "3.8 trillion years",
+		answerD: "3.8 billion years",
+		correctAnswer: "D"
 	},
+	{
+		id: 4,	
+		questionImgURL: "./assets/images/questions/04.png",
+		questionImgAlt: "Tides on the beach",
+		questionText: "What causes the rise and fall of the oceans' tides?",
+		answerA: "The gravitational pull of the moon.",
+		answerB: "The rotation of the Earth.",
+		answerC: "An angry wizard.",
+		answerD: "Heat from the sun.",
+		correctAnswer: "A"
+	},
+	{
+		id: 5,	
+		questionImgURL: "./assets/images/questions/05.png",
+		questionImgAlt: "Mountains",
+		questionText: "What is the worlds tallest mountain when measured from the center of the Earth?",
+		answerA: "Mt. Everest, Nepal",
+		answerB: "Mt. Chimborazo, Ecuador",
+		answerC: "Mt. Chhogori, Pakistan",
+		answerD: "Mt. Aconcagua, Argentina",
+		correctAnswer: "B"
+	}/*,
+		id: 6,	
+		questionImgURL: "./assets/images/questions/06.png",
+		questionImgAlt: "",
+		questionText: "",
+		answerA: "",
+		answerB: "",
+		answerC: "",
+		answerD: "",
+		correctAnswer: ""
+	},
+		id: 7,	
+		questionImgURL: "./assets/images/questions/07.png",
+		questionImgAlt: "",
+		questionText: "",
+		answerA: "",
+		answerB: "",
+		answerC: "",
+		answerD: "",
+		correctAnswer: ""
+	},
+		id: 8,	
+		questionImgURL: "./assets/images/questions/08.png",
+		questionImgAlt: "",
+		questionText: "",
+		answerA: "",
+		answerB: "",
+		answerC: "",
+		answerD: "",
+		correctAnswer: ""
+	},
+		id: 9,	
+		questionImgURL: "./assets/images/questions/09.png",
+		questionImgAlt: "",
+		questionText: "",
+		answerA: "",
+		answerB: "",
+		answerC: "",
+		answerD: "",
+		correctAnswer: ""
+	}*/
 ];
 
 var usedQuestions = [];
 var playerScore = 0;
-var questionCounter = 0;
-var displayImage = "";
-var selectedQuestion = "";
-var displayQuestion = "";
-var timeRemaining = 10;
+var questionCounter = 1;
+var displayImage = " ";
+var selectedQuestion = " ";
+var displayQuestion = " ";
+var initialTimeRemaining = 15;
+var timeRemaining = initialTimeRemaining;
+
 
 
 $("#qCounter").text(questionCounter);
@@ -73,7 +129,7 @@ function chooseQuestion() {
 
 	$("#questionImgHolder, #questionBlank, #A, #B, #C, #D").empty();
 
-	displayImage = $("<img>").attr( {"src": selectedQuestion.questionImgURL, "alt": selectedQuestion.questionImgAlt} );
+	displayImage = $("<img class='hint'>").attr( {"src": selectedQuestion.questionImgURL, "alt": selectedQuestion.questionImgAlt} );
 	$("#questionImgHolder").append(displayImage);
 
 	displayQuestion = $("<p>").text(selectedQuestion.questionText);
@@ -86,9 +142,34 @@ function chooseQuestion() {
 
 	var spliceOut = availableQuestions.splice(x, 1,);
 	usedQuestions.push(spliceOut);
-	console.log (usedQuestions);
-	console.log (availableQuestions);
 };
+
+function nextQuestion() {	
+	if (availableQuestions.length > 0) {
+		questionCounter++;
+		$("#qCounter").text(questionCounter);	
+		clearInterval(intervalId);	
+		timeRemaining = initialTimeRemaining;
+		$("#qTimer").text(timeRemaining);
+	
+		chooseQuestion();
+		questionTimer();
+	} else { 
+
+		$("#questionImgHolder, #questionBlank, #questionTitle, #answerList, #timer").empty();
+		$("#timer").text("Quiz Complete");
+
+		displayImage = $("<img class='hint'>").attr( {"src": "./assets/images/final_score.png", "alt": "the Earth"} );
+		$("#questionImgHolder").append(displayImage);
+		
+		$("#questionTitle").text("Player Score");
+		var scoreHeader = $("<h2 id='scoreHeader'>").text("Congratulations!");
+		var scoreBody =	$("<p id ='scoreBody'>").text("You got " + playerScore + " out of " + usedQuestions.length + " correct.");
+		$("#questionBlank").append(scoreHeader);
+		$("#questionBlank").append(scoreBody);
+	}		
+};
+
 
 function questionTimer() {
 	intervalId = setInterval(decrement, 1000);
@@ -98,37 +179,20 @@ function decrement() {
 	timeRemaining--;
 	$("#qTimer").text(timeRemaining);
 	if (timeRemaining === 0) {
-		clearInterval(intervalId);
-		chooseQuestion();
-		timeRemaining = 11;
-		questionCounter++;
-		questionTimer();
-
+		nextQuestion();
 	}
 };
+
 
 chooseQuestion();
 questionTimer();
 
 $("#A, #B, #C, #D").on("click", function(){	
-	questionCounter ++;
-	$("#qCounter").text(questionCounter);
-	if ( $(this).attr("id") === selectedQuestion.correctAnswer ){
-		alert("correct!");
+	if ( $(this).attr("id") === selectedQuestion.correctAnswer ){		
 		playerScore ++;
-	}	
-	chooseQuestion();
-	console.log(selectedQuestion);
+	}
+	nextQuestion();		
 });
-
-
-
-
-
-
-
-
-
 
 
 
